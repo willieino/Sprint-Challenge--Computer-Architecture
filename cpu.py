@@ -166,7 +166,6 @@ class CPU:
                 self.PC += 3
 
             elif command == LDI:
-                #print("LDI:")
                 op = ram[self.PC]
                 register = int(str(ram[self.PC + 1]), 2)
                 value = ram[self.PC + 2] 
@@ -294,7 +293,6 @@ class CPU:
                 self.PC += 3
 
             elif command == CMP:
-                #print("CMP:")
                 # get the two register values
                 first_register = ram[self.PC + 1]
                 second_register = ram[self.PC + 2]
@@ -310,8 +308,7 @@ class CPU:
                 else:
                     self.FL = 1
                 # advance the program counter
-                self.PC += 3
-                #print("FL:", self.FL)             
+                self.PC += 3         
                 
             elif command == DIV:
                 first_register = ram[self.PC + 1]
@@ -367,7 +364,6 @@ class CPU:
                 self.PC += 2
 
             elif command == JEQ: 
-                #print("JEQ:")
                 # If `equal` flag is set (true), jump to the address stored in the given register.  
                 if self.FL == 1:
                     register = ram[self.PC + 1]
@@ -379,7 +375,6 @@ class CPU:
                     self.PC += 2     
             
             elif command == JNE: 
-                #print("JNE:")
                 # If `E` flag is clear (false, 0), jump to the address stored in the given register.   
                 if self.FL == 100 or self.FL == 10:
                     register = ram[self.PC + 1]
@@ -391,7 +386,6 @@ class CPU:
                     self.PC += 2   
             
             elif command == JMP:
-                #pass # not finished with this
                 register_address = ram[self.PC + 1]
                 register_address = int(str(register_address), 2)
                 address_to_jump_to = self.registers[register_address]
@@ -404,7 +398,6 @@ class CPU:
                 register_address = ram[self.PC + 1]
                 # check contents for the address we are going to jump to
                 register_address = int(str(register_address), 2)
-                #print("register_address:", register_address)
                 address_to_jump_to = self.registers[register_address]              
                 # save the next instruction address for the RETurn
                 next_instruction_address = bin(self.PC + 2)
