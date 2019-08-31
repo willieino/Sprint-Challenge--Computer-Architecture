@@ -196,7 +196,11 @@ class CPU:
                 second_register = ram[self.PC + 2]
                 value_a = self.registers[first_register]
                 value_b = self.registers[second_register]
-                temp = int(bin(value_a), 2) & int(bin(value_b), 2)
+                print("value_a:", int(bin(value_a), 2))
+                temp = bin(int(bin(value_a), 2) & int(bin(value_b), 2))
+                # store the results in register a
+                #temp = bin(temp)[2:]
+                #temp = int(temp)
                 print("temp: ", temp)
 
                 self.PC += 3
