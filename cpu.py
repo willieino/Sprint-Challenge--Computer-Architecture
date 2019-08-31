@@ -1,6 +1,7 @@
 """CPU functionality."""
 
 import sys
+from operator import *
 
 
 ram = [0] * 256
@@ -144,9 +145,9 @@ class CPU:
         
         while running:
             
-            self.print_registers()
-            self.trace()
-            print("ram: ", ram)
+            #self.print_registers()
+            #self.trace()
+            #print("ram: ", ram)
             command = ram[self.PC]
         
             if command == HLT:
@@ -191,21 +192,18 @@ class CPU:
                 self.PC += 2
 
             elif command == AND: 
+                pass
                 print("AND:")
                 first_register = ram[self.PC + 1]
                 second_register = ram[self.PC + 2]
                 value_a = self.registers[first_register]
                 value_b = self.registers[second_register]
-                print("value_a:", int(bin(value_a), 2))
-                temp = bin(int(bin(value_a), 2) & int(bin(value_b), 2))
-                # store the results in register a
-                #temp = bin(temp)[2:]
-                #temp = int(temp)
-                print("temp: ", temp)
-
+                test = bin(int(str(value_a), 2)) 
+                test2 = bin(int(str(value_b), 2))
                 self.PC += 3
 
             elif command == OR: 
+                pass
                 print("OR:")
                 first_register = ram[self.PC + 1]
                 second_register = ram[self.PC + 2]
@@ -216,6 +214,7 @@ class CPU:
                 self.PC += 3
 
             elif command == XOR: 
+                pass
                 print("XOR:")
                 first_register = ram[self.PC + 1]
                 second_register = ram[self.PC + 2]
@@ -226,6 +225,7 @@ class CPU:
                 self.PC += 3
 
             elif command == NOT: 
+                pass
                 print("NOT:")
                 first_register = ram[self.PC + 1]
                 second_register = ram[self.PC + 2]
@@ -235,7 +235,8 @@ class CPU:
                 print(bin(value_b))
                 self.PC += 3
 
-            elif command == SHL: 
+            elif command == SHL:
+                pass 
                 print("SHL:")
                 first_register = ram[self.PC + 1]
                 second_register = ram[self.PC + 2]
@@ -246,6 +247,7 @@ class CPU:
                 self.PC += 3
 
             elif command == SHR: 
+                pass
                 print("SHR:")
                 first_register = ram[self.PC + 1]
                 second_register = ram[self.PC + 2]
