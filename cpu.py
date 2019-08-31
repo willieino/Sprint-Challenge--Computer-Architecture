@@ -166,6 +166,7 @@ class CPU:
                 self.PC += 3
 
             elif command == LDI:
+                #print("LDI:")
                 op = ram[self.PC]
                 register = int(str(ram[self.PC + 1]), 2)
                 value = ram[self.PC + 2] 
@@ -293,6 +294,7 @@ class CPU:
                 self.PC += 3
 
             elif command == CMP:
+                #print("CMP:")
                 # get the two register values
                 first_register = ram[self.PC + 1]
                 second_register = ram[self.PC + 2]
@@ -308,7 +310,8 @@ class CPU:
                 else:
                     self.FL = 1
                 # advance the program counter
-                self.PC += 3             
+                self.PC += 3
+                #print("FL:", self.FL)             
                 
             elif command == DIV:
                 first_register = ram[self.PC + 1]
@@ -364,6 +367,7 @@ class CPU:
                 self.PC += 2
 
             elif command == JEQ: 
+                #print("JEQ:")
                 # If `equal` flag is set (true), jump to the address stored in the given register.  
                 if self.FL == 1:
                     register = ram[self.PC + 1]
@@ -375,9 +379,11 @@ class CPU:
                     self.PC += 2     
             
             elif command == JNE: 
+                #print("JNE:")
                 # If `E` flag is clear (false, 0), jump to the address stored in the given register.   
-                if self.FL == 0:
+                if self.FL == 100 or self.FL == 10:
                     register = ram[self.PC + 1]
+                    register = int(str(register), 2)                    
                     value = self.registers[register]
                     self.PC = int(str(value), 2) 
                 # if the values are not equal advance the program counter
